@@ -1,50 +1,43 @@
-//Snack 2:
-const arrayCalcio = [
-    {
-        nome: "team1",
-        puntifalli: 0,
-        puntisubiti: 0
-    },
-    {
-        nome: "team2",
-        puntifalli: 0,
-        puntisubiti: 0
-    },
-    {
-        nome: "team3",
-        puntifalli: 0,
-        puntisubiti: 0
-    },
-    {
-        nome: "team4",
-        puntifalli: 0,
-        puntisubiti: 0
-    },
-];
-
-//1
-function getRndNum(min, max) {
-    return Math.floor(Math.random() * max) + min;
+/* SNACK 3
+Scrivere una funzione che accetti tre argomenti, un array e due numeri (a più piccolo di b).
+La funzione ritornerà un nuovo array con i valori che hanno la posizione compresa tra i due numeri. 
+Usiamo i nuovi metodi degli array foreach o filter.
+*/
+function myFunction(arr, a, b) {
+    b = b + 1;
+    return arr.slice(a, b);
 }
-arrayCalcio.forEach(x => {
-    x.puntifalli = getRndNum(1, 10);
-    x.puntisubiti = getRndNum(1, 10);
-});
-console.log(arrayCalcio);
 
-//2
-const donewTeams = (arrayList) => {
-    const newTeams = [];
-    for (const x of arrayList) {
-        const {nome, puntisubiti} = x;
-        newTeams.push({
-            nome,
-            puntisubiti
-        })
-    }
-    return newTeams;
+function myFilter(arr, a, b) {
+    return arr.filter(function(element, index){
+        console.log(`Posizione: ${index}, check: ${index >= a && index <= b}`)
+        if (index >= a && index <= b){
+            return true;
+        } else {
+            return false;
+        }
+    })
+}
+function myForEach(arr, a, b) {
+    const result = [];
+    arr.forEach((element, index) => {
+        if (index >= a && index <= b){
+            result.push(element);
+        }
+    });
+    return result;
 }
 
 
-const newTeams = donewTeams(arrayCalcio);
-console.log(newTeams)
+
+var start = parseInt(prompt("Numero inizio: "));
+var end = parseInt(prompt("Numero fine: "));
+
+var array1 = [1, 2, 3, 4, 5];
+var array2 = myFunction(array1, start, end);
+var array3 = myFilter(array1, start, end);
+var array4 = myForEach(array1, start, end);
+
+console.log("myFunction :" + array2);
+console.log("myFilter :" + array3);
+console.log("myForEach :" + array4);
